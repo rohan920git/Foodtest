@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
-const schema = new mongoose.schema
-const Userschema = new schema({
+const {Schema} = mongoose;
+const Userschema = new Schema({
     name:{
         type:String,
         required:true
@@ -13,7 +13,7 @@ const Userschema = new schema({
         type:String,
         required: true
     },
-    passward:{
+    password:{
         type:String,
         required: true
     }

@@ -1,6 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const user = require("../model/user")
+const user = require("../model/User")
+router.get('/data', async (req ,res)=>{
+    res.json({success:true});
+    
+})
 router.post('/createUser' , async (req ,res)=>{
   try{
     await user.create({
@@ -15,4 +19,5 @@ router.post('/createUser' , async (req ,res)=>{
     res.json({success:false});
   }
 })
+
 module.exports = router;

@@ -15,10 +15,8 @@ function SignUP() {
          e.preventDefault();
          const response = await fetch("http://localhost:5000/api/createuser",{
               method:"POST",
-              header:{
-                
-                              },
-              body:JSON.stringify({name:credential.name,geolocation:credential.geolocation,email:credential.email,password:credential.password}),
+            
+              body:JSON.stringify({name:credential.name,geolocation:credential.location,email:credential.email,password:credential.password}),
               
          });
          const json = await response.json();

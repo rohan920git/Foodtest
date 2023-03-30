@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const User = require("../model/users");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { getSpaceUntilMaxLength } = require("@testing-library/user-event/dist/utils");
+const jwtsec ="Iamrohan1defaiencieidhtAIITINTIEIRE";
   router.post("/createUser"
   ,[
     body("name").isLength({min:2}),
@@ -15,6 +15,11 @@ const { getSpaceUntilMaxLength } = require("@testing-library/user-event/dist/uti
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
+    }
+    const userdata = await User.find({email:req.body.email});
+    if(userdata){
+      return res.status(400).json({success:false,
+      message:"user already exists"})
     }
     const salt = await bcrypt.genSalt(10);
     let secpassword = await bcrypt.hash(req.body.password,salt);
@@ -53,14 +58,20 @@ const { getSpaceUntilMaxLength } = require("@testing-library/user-event/dist/uti
                                   success:false}
                                     );
       } 
-      if(! (req.body.password === userdata.password)){
+      let pwdcompare = await bcrypt.compare(req.body.password , userdata.password);
+      if(!(pwdcompare)){
         
         return res.status(400).json({error : "enter correct password" ,
                                       Message : "password is worong",
                                       success:false});
       }
-           
-      return res.json({success:true});
+       const data ={
+        user:{
+          id:userdata.id,
+        }
+       }
+        const token = jwt.sign(data , jwtsec);
+      return res.json({success:true , token:token});
   }
   catch(error){
     console.log(error)

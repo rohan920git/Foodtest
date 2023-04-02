@@ -33,7 +33,9 @@ function Login() {
            alert("enter valid credentials")
           }
          if(json.success){
-            nevigate("/")
+          localStorage.setItem("authToken",json.token); 
+          console.log(localStorage.getItem("authToken"));
+          nevigate("/")
           }
          messageupdate(json);
     }

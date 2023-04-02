@@ -16,7 +16,8 @@ const jwtsec ="Iamrohan1defaiencieidhtAIITINTIEIRE";
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const userdata = await User.find({email:req.body.email});
+    let email = req.body.email;
+    const userdata = await User.findOne({email});
     if(userdata){
       return res.status(400).json({success:false,
       message:"user already exists"})
@@ -71,6 +72,7 @@ const jwtsec ="Iamrohan1defaiencieidhtAIITINTIEIRE";
         }
        }
         const token = jwt.sign(data , jwtsec);
+        console.log(global.fooditem);
       return res.json({success:true , token:token});
   }
   catch(error){

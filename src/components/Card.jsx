@@ -1,13 +1,15 @@
 import React from 'react'
 
-function Card() {
+function Card(props) {
+  let options = props.filteritem.options[0];
+  let priceOptions = Object.keys(options);
   return (
     <div>
-       <div className="card mt-3" style={{"width": "18rem" , "maxHeight" :"360px"}}>
-  <img className="card-img-top" src="..." alt="Card image cap"/>
+       <div className="card mt-3" style={{width: "18rem" , maxHeight :"360px"}}>
+  <img className="card-img-top" src={props.filteritem.img} alt="Card image cap"/>
   <div className="card-body">
-    <h5 className="card-title">Card title</h5>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 className="card-title">{props.filteritem.name}</h5>
+    
     <div className='container w-100'> 
      <select className=' h-100 m-2 bg-success'>
         {
@@ -19,8 +21,11 @@ function Card() {
         }
      </select>
      <select className='h-100 m-2 bg-success'>
-      <option value={"half"}>half</option>
-      <option value={"full"}>full</option>
+       {
+        priceOptions.map((data)=>{
+          return <option key={data} value={data}> {data}</option>
+        })
+       }
       </select>
       <div className='d-inline'>Total price</div>
     </div>

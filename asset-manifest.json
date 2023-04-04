@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Foodtest/static/css/main.a2ebbfe6.css",
+    "main.js": "/Foodtest/static/js/main.3cde7bec.js",
+    "static/js/787.2070ba64.chunk.js": "/Foodtest/static/js/787.2070ba64.chunk.js",
+    "index.html": "/Foodtest/index.html",
+    "main.a2ebbfe6.css.map": "/Foodtest/static/css/main.a2ebbfe6.css.map",
+    "main.3cde7bec.js.map": "/Foodtest/static/js/main.3cde7bec.js.map",
+    "787.2070ba64.chunk.js.map": "/Foodtest/static/js/787.2070ba64.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a2ebbfe6.css",
+    "static/js/main.3cde7bec.js"
+  ]
+}

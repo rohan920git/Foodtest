@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const { find } = require("./model/users");
-const url = "mongodb+srv://rohan:rohanb158@cluster0.35or8u3.mongodb.net/foodtestmern?retryWrites=true&w=majority"
+require("dotenv").config();
+const url = process.env.DATABASE_URL;
 const  mongodb =async()=>{
- await mongoose.connect(url).then(async ()=>{
+ await mongoose.connect(`${process.env.DATABASE_URL}`).then(async ()=>{
     console.log("connected successfully");
     
     
